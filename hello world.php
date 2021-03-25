@@ -5,7 +5,7 @@
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<body>
+<body id='content'>
 <script>
     //This makes the overlay
     //variable initialization
@@ -53,7 +53,50 @@
     //1 means player
     //CONTROLS
     document.onkeydown = checkKey;
-    window.addEventListener('touchstart', checkTouch);
+    
+  let body = document.getElementById('content');
+ /*
+ desde -135 a -45
+
+desde -45 a 45
+
+de 45 a 135
+
+de 135 a 180
+
+de 0 a 1
+ */
+ centerX=(body.offsetWidth)/2;
+ centerY=(body.offsetHeight)/2;
+    const onMove = (e) =>{
+        var x = (e.touches ?  e.touches[0].pageX : e.pageX) ;
+        var y = (e.touches ?  e.touches[0].pageY : e.pageY) ;
+        radians = Math.atan2(y-centerY, x-centerX);
+        degrees = radians* (180/Math.PI);
+        if (degrees>=-135 && degrees<=-45 ){
+            movement('up')
+        }else{
+            if (degrees>=-45 && degrees<=45 ){
+                movement('right')
+            }else{
+                if(degrees>=45 && degrees<=135 ){
+                    movement('down')
+                }else{
+                    if(degrees>=135 && degrees<=180){
+                         movement('left')
+                    }else{
+                        if(degrees>=-180 && degrees<=-135 ){
+                            movement('left')
+                        }
+                    }
+                }
+            }
+        }
+        
+        console.log(degrees);
+    }
+    document.addEventListener('touchstart', onMove);
+
     function checkTouch(a) {
         if(a.type == 'touchstart' || a.type == 'touchmove' || a.type == 'touchend' || a.type == 'touchcancel'){
             pointerEvent = a.targetTouches[0];
