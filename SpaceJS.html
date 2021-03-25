@@ -5,6 +5,8 @@
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 <body id='content'>
 <script>
     //This makes the overlay
@@ -32,7 +34,7 @@
     var grid=[]
     initialbody=''
     //creating the grid
-    $("body").append('<div class="row" id="overlay" style="position: absolute;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-weight: bold;color: antiquewhite;"id="score">aaaa</span></div>')
+    $("body").append('<div class="row" id="overlay" style="position: absolute;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-family: \'Orbitron\', sans-serif;color: white;"id="score">aaaa</span></div>')
     for(y=0;y<=height;y++){
         grid.push([]);
         initialbody=initialbody+("<div id='row"+y+"' style='display:flex'>")   
