@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
-<body id='content'>
+<body id='content' style='background-color: #63FF0B;'>
 <script>
     //This makes the overlay
     //variable initialization
@@ -26,7 +26,7 @@
         height++
     }
     height--
-    playercolor='ffffff'
+    playercolor='63FF0B'
     tickspeed=100
     stop=false    
     score=0
@@ -35,7 +35,7 @@
     var grid=[]
     initialbody=''
     //creating the grid
-    $("body").append('<div class="row" id="overlay" style="position: absolute;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-family: \'Orbitron\', sans-serif;color: white;"id="score">aaaa</span></div>')
+    $("body").append('<div class="row" id="overlay" style="position: absolute;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-family: \'Orbitron\', sans-serif;color: #63FF0B;"id="score">aaaa</span></div>')
     for(y=0;y<=height;y++){
         grid.push([]);
         initialbody=initialbody+("<div id='row"+y+"' style='display:flex'>")   
@@ -48,11 +48,12 @@
     $("body").append(initialbody);
     //This sets the tickspeed. Enemies and things apart from the player will act by this.
     setInterval(forcedUpdate, tickspeed);
+    setInterval(died,1000);
     //This sets the score timer.
     setInterval(scoreUpdate, 100);
     //This sets the initial player position
     grid[height][Math.round(width/2)]=1;
-    playercolor='ffffff'
+    playercolor='63FF0B'
     //1 means player
     //CONTROLS
     document.onkeydown = checkKey;
@@ -99,7 +100,13 @@ de 0 a 1
         console.log(degrees);
     }
     document.addEventListener('touchstart', onMove);
-
+    function died(){
+                document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#000000", 'important');   
+                setTimeout(function(){
+                    document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#"+playercolor, 'important');    
+                }, 500);
+                
+    }
     function checkTouch(a) {
         if(a.type == 'touchstart' || a.type == 'touchmove' || a.type == 'touchend' || a.type == 'touchcancel'){
             pointerEvent = a.targetTouches[0];
@@ -163,8 +170,10 @@ de 0 a 1
             render()            
         }else{
             if(p==0){
+                
                 render()
                 yandx=findEntity(1)
+
                 console.log(yandx)
                 console.table(grid);
                 p++
@@ -219,7 +228,7 @@ de 0 a 1
         }
         //This sets the initial player position
         grid[height][Math.round(width/2)]=1;
-        playercolor='ffffff'
+        playercolor='63FF0B'
         score=0
         stop=false
         p=0
