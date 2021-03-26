@@ -8,6 +8,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+<style>
+    @font-face {
+    font-family: digital;
+    src: url(DS-DIGI.TTF);
+    font-weight: bold;
+}
+</style>
+
 <body id='content' style='background-color: #63FF0B;'>
 <script>
     //This makes the overlay
@@ -35,7 +43,7 @@
     var grid=[]
     initialbody=''
     //creating the grid
-    $("body").append('<div class="row" id="overlay" style="position: absolute;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-family: \'Orbitron\', sans-serif;color: #63FF0B;"id="score">aaaa</span></div>')
+    $("body").append('<div class="row" id="overlay" style="position: absolute;z-index:2;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-family: \'digital\', sans-serif;color: #63FF0B; text-shadow: 0px 0px 8px #63FF0B;"id="score">aaaa</span></div>')
     for(y=0;y<=height;y++){
         grid.push([]);
         initialbody=initialbody+("<div id='row"+y+"' style='display:flex'>")   
@@ -102,8 +110,10 @@ de 0 a 1
     document.addEventListener('touchstart', onMove);
     function died(){
                 document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#000000", 'important');   
+                document.getElementById('col'+y+'-'+x).style['boxShadow']= '';
                 setTimeout(function(){
-                    document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#"+playercolor, 'important');    
+                    document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#"+playercolor, 'important');  
+                    document.getElementById('col'+y+'-'+x).style['boxShadow']= '0px 0px 20px 2px #'+playercolor;  
                 }, 500);
                 
     }
@@ -208,13 +218,20 @@ de 0 a 1
                 for(x=0;x<=width;x++){
                     switch(grid[y][x]){
                         case 1:
-                            document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#"+playercolor, 'important');                                
+                            document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#"+playercolor, 'important');         
+                            document.getElementById('col'+y+'-'+x).style['boxShadow']= '0px 0px 20px 2px #'+playercolor;
+                            document.getElementById('col'+y+'-'+x).style['z-index']= '1';                       
                         break;
                         case 2:
-                            document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "grey", 'important');
+                            document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#3b6f1d", 'important');
+                            document.getElementById('col'+y+'-'+x).style['boxShadow']= '0px 0px 20px 2px #3b6f1d';
+                            document.getElementById('col'+y+'-'+x).style['z-index']= '1';
+                            
                         break;
                         default:
                             document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "black", 'important');
+                            document.getElementById('col'+y+'-'+x).style['boxShadow']= '';
+                            document.getElementById('col'+y+'-'+x).style['z-index']= '0';
                         break;
                     }    
                 }
