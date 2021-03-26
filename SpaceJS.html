@@ -43,7 +43,7 @@
     var grid=[]
     initialbody=''
     //creating the grid
-    $("body").append('<div class="row" id="overlay" style="position: absolute;z-index:2;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-family: \'digital\', sans-serif;color: #63FF0B; text-shadow: 0px 0px 8px #63FF0B;"id="score">aaaa</span></div>')
+    $("body").append('<div class="row" id="overlay" style="position: absolute;z-index:3;"><span class="col" style="font-size: xx-large;margin-left: 0.5em;font-family: \'digital\', sans-serif;color: #63FF0B; text-shadow: 0px 0px 8px #63FF0B;"id="score">aaaa</span></div>')
     for(y=0;y<=height;y++){
         grid.push([]);
         initialbody=initialbody+("<div id='row"+y+"' style='display:flex'>")   
@@ -220,7 +220,7 @@ de 0 a 1
                         case 1:
                             document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#"+playercolor, 'important');         
                             document.getElementById('col'+y+'-'+x).style['boxShadow']= '0px 0px 20px 2px #'+playercolor;
-                            document.getElementById('col'+y+'-'+x).style['z-index']= '1';                       
+                            document.getElementById('col'+y+'-'+x).style['z-index']= '2';                       
                         break;
                         case 2:
                             document.getElementById('col'+y+'-'+x).style.setProperty('background-color', "#3b6f1d", 'important');
